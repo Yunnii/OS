@@ -7,15 +7,13 @@ struct dinmas
 	int	maxlength;
 	int	length;
 };
-void sortirovka(dinmas *dintemp)
-{
 
-}
-int merge(dinmas *dintemp,int lb,int split,int ub)
+int merge(struct dinmas *dintemp,int lb,int split,int ub)
 {
 	int pos1=lb;
 	int pos2=split+1;
-	dinmas tempmas={0,ub-lb+1,0};
+	int pos3;
+	struct dinmas tempmas={0,ub-lb+1,0};
 	tempmas.mas=(int*)malloc(tempmas.maxlength*sizeof(int));
 	if (tempmas.mas==NULL)
 	{
@@ -25,24 +23,24 @@ int merge(dinmas *dintemp,int lb,int split,int ub)
 	
 	while(pos1<=split && pos2<=ub)
 	{
-		if(dintemp.mas[pos1]<dintemp.mas[pos2])
-			tempmas.mas[pos3++]=dintemp.mas[pos1++]
+		if(dintemp->mas[pos1]<dintemp->mas[pos2])
+			tempmas.mas[pos3++]=dintemp->mas[pos1++];
 		else 
-			tempmas.mas[pos3++]=dintemp.mas[pos2++]
+			tempmas.mas[pos3++]=dintemp->mas[pos2++];
 	}
 	for (pos3 = 0; pos3 < ub-lb+1; pos3++)
-		dintemp.mas[lb+pos3] = tempmas.mas[pos3];
-	free(temp.mas);
+		dintemp->mas[lb+pos3] = tempmas.mas[pos3];
+	free(tempmas.mas);
 	return 0;
 }
-int mergeSort(dinmas *dintemp,int lb,int ub)
+int mergeSort(struct dinmas *dintemp,int lb,int ub)
 {
 	if (lb<ub)
 	{
 		int split=(int)((lb+ub)/2);
-		if (mergeSort(dinmas &dintemp,lb,split)==2) return 2;
-		if (mergeSort(dinmas &dintemp,split+1,ub)==2) return 2;
-		return merge(dinmas &dintemp,lb,split,ub);
+		if (mergeSort(dintemp,lb,split)==2) return 2;
+		if (mergeSort(dintemp,split+1,ub)==2) return 2;
+		return merge(dintemp,lb,split,ub);
 	}
 	return 0;	
 }
@@ -59,14 +57,14 @@ int main(int argc,char **argv)
 	int	temp;
 	int	schital;
 	int ErrNum=0;
-	dinmas sortmas={0,10,0};
+	struct dinmas sortmas={0,10,0};
 	sortmas.mas=(int*)malloc(sortmas.maxlength*sizeof(int));
 	if (sortmas.mas==NULL)
 	{
 		printf("Not avaliable memory for creating membuf");
 		exit(1);
 	}
-	for(;ErrNum==0 && fnumb!=0 && (handle=fopen(argv[fnumb],"r"));fnumb--)
+	for( ; ErrNum==0 && fnumb!=0 && (handle=fopen(argv[fnumb],"r"));fnumb--)
 	{
 		while(EOF!=(schital=fscanf(handle,"%d",&temp)))
 		{
