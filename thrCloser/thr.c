@@ -3,9 +3,7 @@
 #include <time.h>
 
 int lgth=3;
-int mas[lgth];
-mas[0]=0;
-mas[lgth-1]=0;
+int mas[3];
 int y=1000000000;
 void *func1()
 {	
@@ -23,6 +21,8 @@ void *func2()
 }
 int main()
 {
+	mas[0]=0;
+	mas[lgth-1]=0;
 	clock_t start=clock();
 	pthread_t thread1;
 	pthread_t thread2;
