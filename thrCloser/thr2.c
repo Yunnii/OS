@@ -4,19 +4,20 @@
 
 int lgth=700;
 int mas[lgth];
-int i=0;
+mas[0]=0;
+mas[lgth-1]=0;
 int y=1000000000;
 void *func1()
 {	
-	while(i++<y)
-		mas[0]=1;
+	while(mas[0]++<y)
+		;
 	puts("1st completed");
 	pthread_exit(NULL);
 }
 void *func2()
 {
-	while(i++<y)
-		mas[lgth-1]=1;
+	while(mas[lgth-1]++<y)
+		;
 	puts("2st completed");
 	pthread_exit(NULL);
 }
