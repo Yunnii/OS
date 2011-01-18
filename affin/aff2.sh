@@ -1,13 +1,16 @@
 #!/bin/bash
-	`gcc hellolong.c -o helloc.out -std=c99`
-	time ./helloc.out &
-	PID=`ps -aef | grep "$PROGRAM" | grep -v grep | awk '{print $2}'`
-	j=1;
-	while [[$PID]];do
-		taskset -c -p $((j)) $PID 
-#		j=$((j^1));
-		done
-
-	time ./helloc.out
-
-rm helloc.out
+	gcc hellolong.c -o helloc.out					#
+	time ./helloc.out &						#
+	PIDold=`ps -a | grep "helloc.out" | awk '{print $1}'` 		#
+	PIDnew=$PIDold							#
+	j=1;								#
+	while [ $PIDold = $PIDnew ];do					#
+		echo "x", `ps -a | grep "helloc.out" | awk '{print $1}'`, "x";
+		taskset -p $j $PID > /dev/null				#
+		j=$(($j^3));						#
+		if [[ $PID!=`ps -a | grep "helloc.out" | awk '{print $1}'` ]];then #
+			break;						#
+		fi							#
+		done								#
+	time ./helloc.out						#
+	rm helloc.out							#
