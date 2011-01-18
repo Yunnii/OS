@@ -3,7 +3,7 @@
 
 int main()
 {
-        int sixe=1000;
+        int size=1000;
 	int a[1000][1000];
 	int summator=0;
 	clock_t s1=clock();
