@@ -3,8 +3,8 @@
 
 int main()
 {
-	int size = 1000;
-	int a[size][size];
+        int sixe=1000;
+	int a[1000][1000];
 	int summator=0;
 	clock_t s1=clock();
 	for(int k=0;k<size;k++)
