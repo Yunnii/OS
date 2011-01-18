@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+	gcc hellolong.c -o helloc
+	time ./hello &
+	PROGRAM="hellong.c"
+	PID=`ps -aef | grep "$PROGRAM" | grep -v grep | awk '{print $2}'`
+	j=1;
+	while [[$PID]]	do
+		taskset -c	$((j)) -p $PID ;
+	#	j=$((j^1));
+		PID=`ps -aef | grep "$PROGRAM" | grep -v grep | awk '{print $2}'`
+		done
+	time ./helloc
